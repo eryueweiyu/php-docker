@@ -1,4 +1,4 @@
-# php7-dockerized
+# php-docker
 Simple PHP7 Docker &amp; Compose Environment 
 
 In order to assist in teaching the building of simple PHP applications and understanding the use of docker and compose this repository was adapted from [Kasper Isager's PHP Dockerized](https://github.com/kasperisager/php-dockerized)
