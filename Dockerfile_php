@@ -1,3 +1,19 @@
 FROM zx5435/php:7.1.10
+RUN echo "http://mirrors.aliyun.com/alpine/v3.4/main/" > /etc/apk/repositories
+
+RUN apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev \
+    && apk add --no-cache --virtual .build-deps autoconf g++ libssh2 openssl openssl-dev make pcre-dev \
+    && pecl install msgpack-2.0.3 \
+    && docker-php-ext-enable msgpack \
+    && pecl install swoole-4.4.0 \
+    && docker-php-ext-enable swoole \
+    && apk del .build-deps \
+    && pecl clear-cache \
+    && docker-php-source delete
+
+
+# RUN pecl install msgpack-2.0.3 && \
+# docker-php-ext-enable msgpack
+
 COPY ./conf/php.ini /usr/local/etc/php/php.ini
 WORKDIR /var/www
